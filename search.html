@@ -4,7 +4,28 @@
         <title>
             Search Recipes
         </title>
+
+        <link rel="stylesheet" href="./search.css">
+         <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     </head>
     <body>
+        <form id="my-form">
+            <div class="form-group" id="my-div"> 
+              <label for="search-recipes">What would you like to cook?</label>
+              <input type="text" name="search-recipes" id="id-search-recipes" class="form-control" placeholder="Enter a Recipe to search for...">
+            </div>
+            <button type="button" id="btn-search" class="btn btn-primary">Search</button>
+          </form>
+
+        <div>
+            
+            <div id="my-p-no-results" style = "display:none" class="alert alert-danger" role="alert">Sorry, no results found. Please try another search.</div>
+            <div id="my-div-results" class="container" style = "display:none"></div> 
+        </div>
+
+
+        <script src="search.js"></script>
     </body>
 </html>
+
