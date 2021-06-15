@@ -4,10 +4,8 @@ const searchRecipesInput = getElem("id-search-recipes");
 const noResults = getElem("my-p-no-results");
 const results = getElem("my-div-results");
 
-const MY_APP_ID = "0fdf5372";
-const MY_APP_KEY = "ece076155bb15570ca980223b6fd2c10";
-
-fetch("./recipe.apiinfo").then((response) => response.json()).then((data) => console.log(data));
+let info = null;
+fetch("./recipe.apiinfo").then((response) => response.json()).then((data) => info = data);
 
 document.getElementById("btn-search").addEventListener("click", (event) => {
     console.log("click", event);
@@ -16,7 +14,7 @@ document.getElementById("btn-search").addEventListener("click", (event) => {
     if(searchRecipesInput.value)
     {
         let recipeToSearchFor = searchRecipesInput.value; 
-        let SEARCH_URI = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipeToSearchFor}&app_id=${MY_APP_ID}&app_key=${MY_APP_KEY}`
+        let SEARCH_URI = `https://api.edamam.com/api/recipes/v2?type=public&q=${recipeToSearchFor}&app_id=${info.appid}&app_key=${info.appkey}`
         fetch(SEARCH_URI)
             .then((response) => processResponse(response))
             .catch((error) => alert(error));
