@@ -5,8 +5,8 @@ const noResults = getElem("my-p-no-results");
 const results = getElem("my-div-results");
 
 let info = {
-    "appid" : "PROVIDE ME",
-    "appkey" : "PROVIDE ME"
+    "appid" : "PROVIDE_ME",
+    "appkey" : "PROVIDE_ME"
 };
 
 document.getElementById("btn-search").addEventListener("click", (event) => {
@@ -35,7 +35,6 @@ function processResponse(response) {
                 clearResults();
 
                 data.hits.forEach(hit => {
-                    // console.log(hit);
                     results.appendChild(makeACard(hit.recipe));
                 });
                 showResults();
@@ -94,6 +93,7 @@ function makeACard(recipe)
     cardDiv.appendChild(cardBodyDiv);
 
     let linkToRecipe = document.createElement("a");
+    linkToRecipe.classList.add("link")
     linkToRecipe.href = recipe.url;
 
     let recipeTitle = document.createElement("h5");
@@ -119,6 +119,7 @@ function makeACard(recipe)
     linkToNutrition.classList.add("btn-sm");
     linkToNutrition.classList.add("btn-block");
     linkToNutrition.classList.add("mt-auto");
+    linkToNutrition.classList.add("link");
     linkToNutrition.textContent = "Nutrition Details";
     cardBodyDiv.appendChild(linkToNutrition);
 
@@ -131,15 +132,3 @@ function clearResults()
         results.removeChild(results.lastChild);
     }
 }
-
-/* <div class="card" id="aCard" style="width: 18rem;">
-    <img id = "anImg" src="..." class="card-img-top" alt="...">
-    <div class="card-body" id="aCardBody">
-        <a href="" id="linkToRecipe">
-            <h5 class="card-title" id="aCardTitle">Recipe</h5>
-            <h6 class="card-title" id="aCardSource">Source</h6>
-        </a>
-        <p class="card-text" id= "aCardCalories">Calories</p>
-        <a href="#" id="btnNutrionInfo" class="btn btn-primary btn-sm">More Nutrition Info</a>
-    </div>
-</div>    */

@@ -13,7 +13,24 @@
         <link rel="stylesheet" href="styles/search.css">
     </head>
     <body>
-        <div class = "my-spacer"></div>
+        <nav class="navbar navbar-expand-lg">          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="build.html">Build a Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html">Recipe Search</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class ="my-spacer"></div>
+
         <h1 class="m-2 row justify-content-center">Recipe Search</h1>
         <div class="m-2 row justify-content-center" id="my-input-form">
             <p class="m-2 col-sm">Wecome to Recipe Search! Use this page to look up your favorite recipes. You can learn about 
@@ -32,7 +49,6 @@
             <div id="my-p-no-results" style = "display:none" class="alert alert-danger" role="alert">Sorry, no results found. Please try another search.</div>
             <div id="my-div-results" class="container mt-5"></div> 
         </div>
-
 
         <script src="scripts/search.js"></script>
     </body>

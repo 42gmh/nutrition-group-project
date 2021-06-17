@@ -11,12 +11,34 @@ h1{
     text-shadow: #ecdbba 1px 0 10px;
 }
 
-a:link{
+nav a {
+    color: #212529;
+    font-weight: bolder;
+    font-size: x-large;
+    text-shadow: #ecdbba 1px 0 10px;
+
+}
+
+nav a:hover {
+    color: #c84b31;
+    font-weight: bolder;
+    font-size: x-large;
+    text-shadow: #212529 1px 0 10px;
+
+}
+
+#my-div-output-container a:link{
     color: #c84b31;
 }
 
-a:visited{
+#my-div-output-container > a:visited{
     color: #c84b31;
+}
+
+.link:hover {
+	text-decoration: underline;
+	text-decoration-color: #c84b31;
+	-webkit-text-decoration-color: #c84b31;
 }
 
 .my-spacer{
