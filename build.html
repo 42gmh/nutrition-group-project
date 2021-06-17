@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
             Build a Recipe
         </title>
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="container">
             <form class="form" id="build">
                 <label for="ingrediant1">Ingrediant</label>
                 <input type="text" name="ingrediant1"/>
@@ -15,6 +18,8 @@
                 <label for="quantity1">Quantity</label>
                 <input type="number" name="quantity1"/>
                 <button type="button" id="plus">+</button>
+                <label for="servings" id="servings">Servings</label>
+                <input type="number" name="servings" id="serv"/>
                 <button type="submit" id="submit">Submit</button>
             </form>
         </div>
