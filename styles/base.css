@@ -44,3 +44,8 @@ nav a:hover {
     background-color: #ecdbba;
     font-size: large;    
 }
+
+.very-small{
+    height: 50px;
+    width: 50px;
+}
