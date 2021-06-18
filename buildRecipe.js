@@ -418,8 +418,8 @@ buildForm.addEventListener('submit', (evt) => {
 				} 
 				nutritionValues.totalWeight += item.totalWeight;
 			} else {
-					console.log(i);
-					alert(`${query[i]} is not a valid ingrediant`);
+					let badValue = document.getElementsByName(`ingrediant${i+1}`)[0].value
+					alert(`${badValue} is not a valid ingredient. Nutrition information includes any valid ingredients entered`);
 			} 
 			i += 1;	
 		})
