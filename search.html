@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
         <title>
             Search Recipes
         </title>
 
-        <link rel="stylesheet" href="./search.css">
-         <!-- Bootstrap CSS CDN -->
+        <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/search.css">
     </head>
     <body>
-        <form id="my-form">
-            <div class="form-group" id="my-div"> 
-              <label for="search-recipes">What would you like to cook?</label>
-              <input type="text" name="search-recipes" id="id-search-recipes" class="form-control" placeholder="Enter a Recipe to search for...">
+        <nav class="navbar navbar-expand-sm">          
+            <div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="build.html">Build a Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html">Recipe Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                </ul>
             </div>
-            <button type="button" id="btn-search" class="btn btn-primary">Search</button>
-          </form>
+        </nav>
 
-        <div>
-            
-            <div id="my-p-no-results" style = "display:none" class="alert alert-danger" role="alert">Sorry, no results found. Please try another search.</div>
-            <div id="my-div-results" class="container" style = "display:none"></div> 
+        <div class ="my-spacer"></div>
+
+        <h1 class="m-2 row justify-content-center">Recipe Search</h1>
+        <div class="m-2 row justify-content-center my-text-panel">
+            <p class="m-2 col-sm">Wecome to Recipe Search! Use this page to look up your favorite recipes. You can learn about 
+                how to prepare the dish, its caloric content, and get detailed nutirional information.</p>
+            <div class="m-2 col-sm">
+                <form id="my-form">
+                <input type="text" name="search-recipes" id="id-search-recipes" class="form-control" placeholder="Enter a recipe to search for...">
+                <button type="button" id="btn-search" class="btn btn-outline-dark btn-block">Search</button>
+                </form>
+            </div>
         </div>
 
+        <div class="my-spacer"></div>
 
-        <script src="search.js"></script>
+        <div id="my-div-output-container" class="mt-5">
+            <div id="my-p-no-results" style = "display:none" class="alert alert-danger" role="alert">Sorry, no results found. Please try another search.</div>
+            <div id="my-div-results" class="container mt-5"></div> 
+        </div>
+
+        <script src="scripts/search.js"></script>
     </body>
 </html>
 
