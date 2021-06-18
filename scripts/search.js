@@ -4,10 +4,15 @@ const searchRecipesInput = getElem("id-search-recipes");
 const noResults = getElem("my-p-no-results");
 const results = getElem("my-div-results");
 
-let info = null;
-fetch("./recipe.apiinfo").then((response) => response.json()).then((data) => info = data);
+let info = {
+    "appid" : "PROVIDE_ME",
+    "appkey" : "PROVIDE_ME"
+};
 
-document.getElementById("btn-search").addEventListener("click", (event) => {
+document.getElementById("btn-search").addEventListener("click", (event) => doAction(event));
+
+function doAction(event)
+{
     console.log("click", event);
     console.log(searchRecipesInput.value);
 
@@ -19,7 +24,7 @@ document.getElementById("btn-search").addEventListener("click", (event) => {
             .then((response) => processResponse(response))
             .catch((error) => alert(error));
     }
-});
+}
 
 function processResponse(response) {
     if (200 == response.status) {
@@ -32,26 +37,9 @@ function processResponse(response) {
             else {
                 clearResults();
 
-                const COLS_PER_ROW = 4;
-
-                let col = 0;
                 data.hits.forEach(hit => {
-                    console.log(hit);
-                    
-                    if(col < COLS_PER_ROW)
-                    {
-
-                    }
                     results.appendChild(makeACard(hit.recipe));
                 });
-                // let hit = data.hits[0];
-                
-                // getElem("anImg").src = hit.recipe.image;
-                // getElem("aCardTitle").textContent = hit.recipe.label;
-                // getElem("aCardSource").textContent = "Source: " + hit.recipe.source;
-                // getElem("aCardCalories").textContent = "Calories: " +  Math.trunc(hit.recipe.calories);
-                // getElem("linkToRecipe").href = hit.recipe.url;
-                // getElem("btnNutrionInfo").href = hit.recipe.shareAs;
                 showResults();
             }
         });
@@ -108,6 +96,7 @@ function makeACard(recipe)
     cardDiv.appendChild(cardBodyDiv);
 
     let linkToRecipe = document.createElement("a");
+    linkToRecipe.classList.add("link")
     linkToRecipe.href = recipe.url;
 
     let recipeTitle = document.createElement("h5");
@@ -129,10 +118,11 @@ function makeACard(recipe)
     let linkToNutrition = document.createElement("a");
     linkToNutrition.href = recipe.shareAs;
     linkToNutrition.classList.add("btn");
-    linkToNutrition.classList.add("btn-primary");
+    linkToNutrition.classList.add("btn-outline-dark");
     linkToNutrition.classList.add("btn-sm");
     linkToNutrition.classList.add("btn-block");
     linkToNutrition.classList.add("mt-auto");
+    linkToNutrition.classList.add("link");
     linkToNutrition.textContent = "Nutrition Details";
     cardBodyDiv.appendChild(linkToNutrition);
 
@@ -145,15 +135,3 @@ function clearResults()
         results.removeChild(results.lastChild);
     }
 }
-
-/* <div class="card" id="aCard" style="width: 18rem;">
-    <img id = "anImg" src="..." class="card-img-top" alt="...">
-    <div class="card-body" id="aCardBody">
-        <a href="" id="linkToRecipe">
-            <h5 class="card-title" id="aCardTitle">Recipe</h5>
-            <h6 class="card-title" id="aCardSource">Source</h6>
-        </a>
-        <p class="card-text" id= "aCardCalories">Calories</p>
-        <a href="#" id="btnNutrionInfo" class="btn btn-primary btn-sm">More Nutrition Info</a>
-    </div>
-</div>    */
