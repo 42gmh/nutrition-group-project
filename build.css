@@ -1,0 +1,12 @@
+ul {
+	list-style-type: none;
+}
+
+.container-fluid {
+    background-color: #346751;
+	align-content: center;
+}
+
+.card {
+	background-color: #ecdbba;
+}
