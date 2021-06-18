@@ -9,7 +9,10 @@ let info = {
     "appkey" : "PROVIDE_ME"
 };
 
-document.getElementById("btn-search").addEventListener("click", (event) => {
+document.getElementById("btn-search").addEventListener("click", (event) => doAction(event));
+
+function doAction(event)
+{
     console.log("click", event);
     console.log(searchRecipesInput.value);
 
@@ -21,7 +24,7 @@ document.getElementById("btn-search").addEventListener("click", (event) => {
             .then((response) => processResponse(response))
             .catch((error) => alert(error));
     }
-});
+}
 
 function processResponse(response) {
     if (200 == response.status) {
