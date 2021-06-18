@@ -11,12 +11,13 @@
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/search.css">
+        <script src="https://developer.edamam.com/attribution/badge.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm">          
             <div>
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
@@ -36,13 +37,16 @@
 
         <h1 class="m-2 row justify-content-center">Recipe Search</h1>
         <div class="m-2 row justify-content-center my-text-panel">
-            <p class="m-2 col-sm">Wecome to Recipe Search! Use this page to look up your favorite recipes. You can learn about 
-                how to prepare the dish, its caloric content, and get detailed nutirional information.</p>
-            <div class="m-2 col-sm">
+            <div class="m-2 col-sm d-inline">
+                <p class="d-inline">Wecome to Recipe Search! Use this page to look up your favorite recipes. You can learn about 
+                    how to prepare the dish, its caloric content, and get detailed nutirional information.</p>    
+            </div>
+            <div class="m-2 col-sm d-inline">
                 <form id="my-form">
-                <input type="text" name="search-recipes" id="id-search-recipes" class="form-control" placeholder="Enter a recipe to search for...">
-                <button type="button" id="btn-search" class="btn btn-outline-dark btn-block">Search</button>
+                    <input type="text" name="search-recipes" id="id-search-recipes" class="form-control" placeholder="Enter a recipe to search for...">
+                    <button type="button" id="btn-search" class="btn btn-outline-dark btn-block">Search</button>
                 </form>
+                <div id="edamam-badge"></div>    
             </div>
         </div>
 
@@ -54,6 +58,6 @@
         </div>
 
         <script src="scripts/search.js"></script>
-    </body>
+        </body>
 </html>
 
