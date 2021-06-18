@@ -4,13 +4,19 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./build.css">
+  <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <title>
             Build a Recipe
         </title>
     </head>
     <body>
-        <div class="container" id="container">
-            <form class="form" id="build">
+        <div class="container-fluid" id="container">
+            <form class="card" id="build">
+                <h3 class="class-title">Build Your Recipe</h3>
+                <div class="list-group list-group-flush" id="form">
+                <div class="list-group-item" id="ingrediant1">
                 <label for="ingrediant1">Ingrediant</label>
                 <input type="text" name="ingrediant1"/>
                 <label for="unit1">Unit</label>
@@ -28,10 +34,15 @@
                 </select>
                 <label for="quantity1">Quantity</label>
                 <input type="number" name="quantity1"/>
-                <button type="button" id="plus">+</button>
+                <button type="button" title="add ingredient" id="plus">+</button>
+                </div>
+                <br>
+                <div class="list-group-item" id="serving">
                 <label for="servings" id="servings">Servings</label>
                 <input type="number" name="servings" id="serv"/>
+                </div>
                 <button type="submit" id="submit">Submit</button>
+                </div>
             </form>
         </div>
         <script src="buildRecipe.js"></script>
