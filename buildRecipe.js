@@ -288,7 +288,7 @@ document.getElementById('plus').addEventListener('click', addIngrediant);
 
 buildForm.addEventListener('submit', (evt) => {
 	evt.preventDefault();
-	const query = userQuery();
+	let query = userQuery();
 	console.log(query);
 	let i = 0;
 	const promiseArray = query.map(query => {	
@@ -333,6 +333,8 @@ buildForm.addEventListener('submit', (evt) => {
 			totalWeight: 0	
 		}
 		array.forEach(item => {
+			let inputValue = document.getElementsByName(`ingrediant${i+1}`)[0];
+			inputValue.setCustomValidity('');
 			if (item.totalWeight) {
 				nutritionValues.Calories += item.calories;
 				if (item.totalNutrients.FAT) { 
@@ -418,8 +420,15 @@ buildForm.addEventListener('submit', (evt) => {
 				} 
 				nutritionValues.totalWeight += item.totalWeight;
 			} else {
-					let badValue = document.getElementsByName(`ingrediant${i+1}`)[0].value
-					alert(`${badValue} is not a valid ingredient. Nutrition information includes any valid ingredients entered`);
+					//alert(`${inputValue} is not a valid ingredient. Nutrition information includes any valid ingredients entered`);
+					inputValue.setAttribute("class", "not-valid");
+					inputValue.setCustomValidity('Invalid Ingrediant');
+					inputValue.addEventListener('input', () => {
+					 inputValue.setAttribute("class", "");
+					 inputValue.setCustomValidity(""); 
+					})
+					items = i+1;
+					throw new Error(`Invalid Ingredient Entered`);	
 			} 
 			i += 1;	
 		})

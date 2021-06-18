@@ -10,3 +10,7 @@ ul {
 .card {
 	background-color: #ecdbba;
 }
+
+.not-valid {
+	border-color: red;
+}
