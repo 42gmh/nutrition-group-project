@@ -6,6 +6,9 @@ const submitButton = document.querySelector('#submit');
 const servingField = document.getElementsByName('servings')[0];
 const servingFieldLabel = document.querySelector('#servings');
 const servingDiv = document.querySelector('#serving');
+const minusButton = document.createElement('button');
+minusButton.textContent ='-';
+minusButton.setAttribute("title", "remove ingredient");
 let items= 1; // counter for number of ingrediants
 
 const addIngrediant = () => {
@@ -19,8 +22,11 @@ const addIngrediant = () => {
 	const quantityLable = document.createElement('label');
 	const unitLable = document.createElement('label');
 	const ingrediantInput = document.createElement('input');
+	ingrediantInput.required = "true";
 	const quantityInput = document.createElement('input');
+	quantityInput.required = "true";
 	const unitInput = document.createElement('select');
+	unitInput.required = "true";
 	const unitOption1 = document.createElement('option');
 	unitOption1.value = "12 grams";
 	unitOption1.textContent = "1/8 cup";
@@ -72,7 +78,6 @@ const addIngrediant = () => {
 	quantityLable.textContent = "Quantity";
 	quantityInput.type = "number";
 	unitLable.textContent = "Unit";
-	//unitInput.type = "text";
 	myDIV.removeChild(plusButton);
 	formDiv.removeChild(submitButton);
 	formDiv.removeChild(servingDiv);
@@ -90,11 +95,24 @@ const addIngrediant = () => {
 	mydiv.append(quantityInput);
 	mydiv.append(' ');
 	mydiv.append(plusButton);
+	mydiv.append(minusButton);
+	minusButton.addEventListener('click', removeIngrediant);
 	formDiv.append(mydiv);
 	formDiv.append(br)
-//	buildForm.append(servingFieldLabel);
 	formDiv.append(servingDiv);
 	formDiv.append(submitButton);
+}
+
+
+const removeIngrediant = () => {
+	const a = document.querySelector(`#ingrediant${items}`);
+	a.removeChild(plusButton);
+	formDiv.removeChild(a);
+	items -= 1;
+	document.querySelector(`#ingrediant${items}`).append(plusButton);
+	if (items > 1) {
+	document.querySelector(`#ingrediant${items}`).append(minusButton);
+	}
 }
 
 const userQuery = () => { // Takes user input and formats it for use with Nutrition Analysis API
@@ -108,7 +126,7 @@ const userQuery = () => { // Takes user input and formats it for use with Nutrit
 	let ingrediantValue = document.getElementsByName(`ingrediant${items}`)[0].value;
 	let quantityValue = document.getElementsByName(`quantity${items}`)[0].value;
 	let unitValue = document.getElementsByName(`unit${items}`)[0].value;
-	recipe.push(`${quantityValue}%20${unitValue}%20${ingrediantValue}`);
+	recipe.unshift(`${quantityValue}%20${unitValue}%20${ingrediantValue}`);
 	items -= 1;
 	console.log(recipe);
 	}
@@ -272,6 +290,7 @@ buildForm.addEventListener('submit', (evt) => {
 	evt.preventDefault();
 	const query = userQuery();
 	console.log(query);
+	let i = 0;
 	const promiseArray = query.map(query => {	
 	return fetch(`https://api.edamam.com/api/nutrition-data?app_id=${appID}&app_key=${appKey}&nutrition-type=cooking&ingr=${query}`)
 	.then(response => response.json())
@@ -314,89 +333,95 @@ buildForm.addEventListener('submit', (evt) => {
 			totalWeight: 0	
 		}
 		array.forEach(item => {
-			nutritionValues.Calories += item.calories;
-			if (item.totalNutrients.FAT) { 
-			nutritionValues.Fat += item.totalNutrients.FAT.quantity; 
+			if (item.totalWeight) {
+				nutritionValues.Calories += item.calories;
+				if (item.totalNutrients.FAT) { 
+				nutritionValues.Fat += item.totalNutrients.FAT.quantity; 
+				} 
+				if (item.totalNutrients.FASAT) { 
+				nutritionValues.Sat += item.totalNutrients.FASAT.quantity;
+				} 
+				if (item.totalNutrients.FATRN) { 
+				nutritionValues.Trans += item.totalNutrients.FATRN.quantity;
+				} 
+				if (item.totalNutrients.CA) { 
+				nutritionValues.Calcium += item.totalNutrients.CA.quantity;
+				} 
+				if (item.totalNutrients.CHOCDF) { 
+				nutritionValues.Carbs += item.totalNutrients.CHOCDF.quantity; 
+				} 
+				if (item.totalNutrients.CHOLE) { 
+				nutritionValues.Chole += item.totalNutrients.CHOLE.quantity; 
+				} 
+				if (item.totalNutrients.FAMS) { 
+				nutritionValues.Mono += item.totalNutrients.FAMS.quantity; 
+				} 
+				if (item.totalNutrients.FAPU) { 
+				nutritionValues.Poly += item.totalNutrients.FAPU.quantity; 
+				} 
+				if (item.totalNutrients.FE) { 
+				nutritionValues.Iron += item.totalNutrients.FE.quantity; 
+				} 
+				if (item.totalNutrients.FIBTG) { 
+				nutritionValues.Fiber += item.totalNutrients.FIBTG.quantity; 
+				} 
+				if (item.totalNutrients.K) { 
+				nutritionValues.Potassium += item.totalNutrients.K.quantity; 
+				} 
+				if (item.totalNutrients.MG) { 
+				nutritionValues.Magnesium += item.totalNutrients.MG.quantity; 
+				} 
+				if (item.totalNutrients.NA) { 
+				nutritionValues.Sodium += item.totalNutrients.NA.quantity; 
+				} 
+				if (item.totalNutrients.NIA) { 
+				nutritionValues.Niacin += item.totalNutrients.NIA.quantity; 
+				} 
+				if (item.totalNutrients.P) { 
+				nutritionValues.Phosphorus += item.totalNutrients.P.quantity; 
+				} 
+				if (item.totalNutrients.PROCNT) { 
+				nutritionValues.Protein += item.totalNutrients.PROCNT.quantity; 
+				} 
+				if (item.totalNutrients.RIBF) { 
+				nutritionValues.Riboflavin += item.totalNutrients.RIBF.quantity; 
+				} 
+				if (item.totalNutrients.SUGAR) { 
+				nutritionValues.Sugar += item.totalNutrients.SUGAR.quantity; 
+				} 
+				if (item.totalNutrients.THIA) { 
+				nutritionValues.Thiamin += item.totalNutrients.THIA.quantity; 
+				} 
+				if (item.totalNutrients.TOCHPA) { 
+				nutritionValues.VitaminE += item.totalNutrients.TOCHPA.quantity; 
+				} 
+				if (item.totalNutrients.VITA) { 
+				nutritionValues.VitaminA += item.totalNutrients.VITA.quantity; 
+				} 
+				if (item.totalNutrients.VITB12) { 
+				nutritionValues.VitaminB12 += item.totalNutrients.VITB12.quantity; 
+				} 
+				if (item.totalNutrients.VITB6A) { 
+				nutritionValues.VitaminB6 += item.totalNutrients.VITB6A.quantity; 
+				} 
+				if (item.totalNutrients.VITC) { 
+				nutritionValues.VitaminC += item.totalNutrients.VITC.quantity; 
+				} 
+				if (item.totalNutrients.VITD) { 
+				nutritionValues.VitaminD += item.totalNutrients.VITD.quantity; 
+				} 
+				if (item.totalNutrients.VITK1) { 
+				nutritionValues.VitaminK += item.totalNutrients.VITK1.quantity; 
+				} 
+				if (item.totalNutrients.ZN) { 
+				nutritionValues.Zinc += item.totalNutrients.ZN.quantity; 
+				} 
+				nutritionValues.totalWeight += item.totalWeight;
+			} else {
+					console.log(i);
+					alert(`${query[i]} is not a valid ingrediant`);
 			} 
-			if (item.totalNutrients.FASAT) { 
-			nutritionValues.Sat += item.totalNutrients.FASAT.quantity;
-			} 
-			if (item.totalNutrients.FATRN) { 
-			nutritionValues.Trans += item.totalNutrients.FATRN.quantity;
-			} 
-			if (item.totalNutrients.CA) { 
-			nutritionValues.Calcium += item.totalNutrients.CA.quantity;
-			} 
-			if (item.totalNutrients.CHOCDF) { 
-			nutritionValues.Carbs += item.totalNutrients.CHOCDF.quantity; 
-			} 
-			if (item.totalNutrients.CHOLE) { 
-			nutritionValues.Chole += item.totalNutrients.CHOLE.quantity; 
-			} 
-			if (item.totalNutrients.FAMS) { 
-			nutritionValues.Mono += item.totalNutrients.FAMS.quantity; 
-			} 
-			if (item.totalNutrients.FAPU) { 
-			nutritionValues.Poly += item.totalNutrients.FAPU.quantity; 
-			} 
-			if (item.totalNutrients.FE) { 
-			nutritionValues.Iron += item.totalNutrients.FE.quantity; 
-			} 
-			if (item.totalNutrients.FIBTG) { 
-			nutritionValues.Fiber += item.totalNutrients.FIBTG.quantity; 
-			} 
-			if (item.totalNutrients.K) { 
-			nutritionValues.Potassium += item.totalNutrients.K.quantity; 
-			} 
-			if (item.totalNutrients.MG) { 
-			nutritionValues.Magnesium += item.totalNutrients.MG.quantity; 
-			} 
-			if (item.totalNutrients.NA) { 
-			nutritionValues.Sodium += item.totalNutrients.NA.quantity; 
-			} 
-			if (item.totalNutrients.NIA) { 
-			nutritionValues.Niacin += item.totalNutrients.NIA.quantity; 
-			} 
-			if (item.totalNutrients.P) { 
-			nutritionValues.Phosphorus += item.totalNutrients.P.quantity; 
-			} 
-			if (item.totalNutrients.PROCNT) { 
-			nutritionValues.Protein += item.totalNutrients.PROCNT.quantity; 
-			} 
-			if (item.totalNutrients.RIBF) { 
-			nutritionValues.Riboflavin += item.totalNutrients.RIBF.quantity; 
-			} 
-			if (item.totalNutrients.SUGAR) { 
-			nutritionValues.Sugar += item.totalNutrients.SUGAR.quantity; 
-			} 
-			if (item.totalNutrients.THIA) { 
-			nutritionValues.Thiamin += item.totalNutrients.THIA.quantity; 
-			} 
-			if (item.totalNutrients.TOCHPA) { 
-			nutritionValues.VitaminE += item.totalNutrients.TOCHPA.quantity; 
-			} 
-			if (item.totalNutrients.VITA) { 
-			nutritionValues.VitaminA += item.totalNutrients.VITA.quantity; 
-			} 
-			if (item.totalNutrients.VITB12) { 
-			nutritionValues.VitaminB12 += item.totalNutrients.VITB12.quantity; 
-			} 
-			if (item.totalNutrients.VITB6A) { 
-			nutritionValues.VitaminB6 += item.totalNutrients.VITB6A.quantity; 
-			} 
-			if (item.totalNutrients.VITC) { 
-			nutritionValues.VitaminC += item.totalNutrients.VITC.quantity; 
-			} 
-			if (item.totalNutrients.VITD) { 
-			nutritionValues.VitaminD += item.totalNutrients.VITD.quantity; 
-			} 
-			if (item.totalNutrients.VITK1) { 
-			nutritionValues.VitaminK += item.totalNutrients.VITK1.quantity; 
-			} 
-			if (item.totalNutrients.ZN) { 
-			nutritionValues.Zinc += item.totalNutrients.ZN.quantity; 
-			} 
-			nutritionValues.totalWeight += item.totalWeight; 
+			i += 1;	
 		})
 		console.log(nutritionValues);
 		displayNutrition(nutritionValues);

@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link rel="stylesheet" href="./styles/base.css">
 <link rel="stylesheet" href="./build.css">
-  <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <title>
             Build a Recipe
         </title>
@@ -39,9 +39,9 @@
                 <div class="list-group list-group-flush" id="form">
                 <div class="list-group-item" id="ingrediant1">
                 <label for="ingrediant1">Ingrediant</label>
-                <input type="text" name="ingrediant1"/>
+                <input type="text" name="ingrediant1" required/>
                 <label for="unit1">Unit</label>
-                <select type="text" name="unit1">
+                <select type="text" name="unit1" required>
                     <option value="12 grams">1/8 cup</option>
                     <option value="24 grams">1/4 cup</option>
                     <option value="48 grams">1/2 cup</option>
@@ -54,13 +54,13 @@
                     <option value="tablespoon">tablespoons</option>
                 </select>
                 <label for="quantity1">Quantity</label>
-                <input type="number" name="quantity1"/>
+                <input type="number" name="quantity1" required/>
                 <button type="button" title="add ingredient" id="plus">+</button>
                 </div>
                 <br>
                 <div class="list-group-item" id="serving">
                 <label for="servings" id="servings">Servings</label>
-                <input type="number" name="servings" id="serv"/>
+                <input type="number" name="servings" id="serv" required/>
                 </div>
                 <button type="submit" id="submit">Submit</button>
                 </div>
