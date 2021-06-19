@@ -10,6 +10,7 @@ const minusButton = document.createElement('button');
 minusButton.textContent ='-';
 minusButton.setAttribute("title", "remove ingredient");
 minusButton.setAttribute("type", "button");
+minusButton.setAttribute("class", "btn btn-primary");
 let items= 1; // counter for number of ingrediants
 
 const addIngrediant = () => {
