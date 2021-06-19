@@ -11,6 +11,6 @@ ul {
 	background-color: #ecdbba;
 }
 
-.not-valid {
+.not-valid, :invalid {
 	border-color: red;
 }
