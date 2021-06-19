@@ -22,11 +22,11 @@ const addIngrediant = () => {
 	const quantityLable = document.createElement('label');
 	const unitLable = document.createElement('label');
 	const ingrediantInput = document.createElement('input');
-	ingrediantInput.required = "true";
+	//ingrediantInput.required = "true";
 	const quantityInput = document.createElement('input');
-	quantityInput.required = "true";
+	//quantityInput.required = "true";
 	const unitInput = document.createElement('select');
-	unitInput.required = "true";
+	//unitInput.required = "true";
 	const unitOption1 = document.createElement('option');
 	unitOption1.value = "12 grams";
 	unitOption1.textContent = "1/8 cup";
@@ -288,7 +288,14 @@ document.getElementById('plus').addEventListener('click', addIngrediant);
 
 buildForm.addEventListener('submit', (evt) => {
 	evt.preventDefault();
-	let query = userQuery();
+	let fields = document.querySelectorAll('input'); // grab all input fields
+	fields.forEach(field => field.required = "true"); // sets input fields to required
+	const isValid = (field) => field.validity.valid; //checks validity of input field
+	//fields = Array.prototype.slice.call(fields) 	
+	fields = Array.from(fields); // converts nodeList into array
+	if (fields.every((field) => isValid(field))){ // checks that all fields are valid before proceeding
+
+	let query = userQuery(); // formats input values for fetch requests
 	console.log(query);
 	let i = 0;
 	const promiseArray = query.map(query => {	
@@ -301,7 +308,7 @@ buildForm.addEventListener('submit', (evt) => {
 	responseArray
 	.then(array => {
 		console.log(array);
-		const nutritionValues = {
+		const nutritionValues = { // initilizes object to store agregate nutrition values from every ingrediant
 			Calories: 0,
 			Fat: 0,
 			Trans: 0,
@@ -422,9 +429,11 @@ buildForm.addEventListener('submit', (evt) => {
 			} else {
 					//alert(`${inputValue} is not a valid ingredient. Nutrition information includes any valid ingredients entered`);
 					inputValue.setAttribute("class", "not-valid");
+					//inputValue.setAttribute("isvalid", "false");
 					inputValue.setCustomValidity('Invalid Ingrediant');
 					inputValue.addEventListener('input', () => {
-					 inputValue.setAttribute("class", "");
+					inputValue.setAttribute("class", "");
+					//inputValue.setAttribute("isvalid", "true");
 					 inputValue.setCustomValidity(""); 
 					})
 					items = i+1;
@@ -435,6 +444,7 @@ buildForm.addEventListener('submit', (evt) => {
 		console.log(nutritionValues);
 		displayNutrition(nutritionValues);
 	}).catch(error => alert(error))
+}
 })
 	
 
