@@ -9,6 +9,7 @@ const servingDiv = document.querySelector('#serving');
 const minusButton = document.createElement('button');
 minusButton.textContent ='-';
 minusButton.setAttribute("title", "remove ingredient");
+minusButton.setAttribute("type", "button");
 let items= 1; // counter for number of ingrediants
 
 const addIngrediant = () => {
@@ -109,6 +110,7 @@ const removeIngrediant = () => {
 	a.removeChild(plusButton);
 	formDiv.removeChild(a);
 	items -= 1;
+	document.querySelectorAll(`input`).forEach(item => item.validity.valid = "true");
 	document.querySelector(`#ingrediant${items}`).append(plusButton);
 	if (items > 1) {
 	document.querySelector(`#ingrediant${items}`).append(minusButton);
