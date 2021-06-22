@@ -11,6 +11,24 @@ ul {
 	background-color: #ecdbba;
 }
 
+.btn-primary {
+	background-color: #ecdbba;
+	color: black;
+	border-color: #ecdbba;
+}
+
+select {
+	background-color: white;
+	border-color: grey;
+	border-width: 1px;
+	border-radius: 5%;
+}
+
+.btn-primary:hover {
+	background-color: grey;
+	border-color: grey;
+}
+
 .not-valid, :invalid {
 	border-color: red;
 }
