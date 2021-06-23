@@ -37,13 +37,16 @@
         </nav>
 
         <div class ="my-spacer"></div>
-        <div class="container-fluid" id="container">
+        <div class="container" id="container">
             <form class="card" id="build">
                 <h3 class="card-title">Build Your Recipe</h3>
                 <div class="list-group list-group-flush" id="form">
                 <div class="list-group-item" id="ingrediant1">
-                <label for="ingrediant1">Ingrediant</label>
+                <div>
+                <label for="ingrediant1">Ingredient</label>
                 <input type="text" name="ingrediant1"/>
+                </div>
+                <div>
                 <label for="unit1">Unit</label>
                 <select type="text" name="unit1">
                     <option value="12 grams">1/8 cup</option>
@@ -57,11 +60,13 @@
                     <option value="teaspoon">teaspoons</option>
                     <option value="tablespoon">tablespoons</option>
                 </select>
+                </div>
+                <div>
                 <label for="quantity1">Quantity</label>
                 <input type="number" name="quantity1"/>
-                <button type="button" title="add ingredient" class="btn btn-primary" id="plus">+</button>
                 </div>
-                <br>
+                <button type="button" title="add ingredient" class="btn btn-primary" id="plus">Add Ingredient</button>
+                </div>
                 <div class="list-group-item" id="serving">
                 <label for="servings" id="servings">Servings</label>
                 <input type="number" name="servings" id="serv"/>
