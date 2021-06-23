@@ -124,13 +124,14 @@ const userQuery = () => { // Takes user input and formats it for use with Nutrit
 	let unit = document.getElementsByName(`unit${items}`)[0];
 	let recipe = [`${quantity.value}%20${unit.value}%20${ingrediant.value}`];
 	console.log(recipe);
-	items -= 1;
-	while (items) {
-	let ingrediantValue = document.getElementsByName(`ingrediant${items}`)[0].value;
-	let quantityValue = document.getElementsByName(`quantity${items}`)[0].value;
-	let unitValue = document.getElementsByName(`unit${items}`)[0].value;
+	let items2 = items
+	items2 -= 1;
+	while (items2) {
+	let ingrediantValue = document.getElementsByName(`ingrediant${items2}`)[0].value;
+	let quantityValue = document.getElementsByName(`quantity${items2}`)[0].value;
+	let unitValue = document.getElementsByName(`unit${items2}`)[0].value;
 	recipe.unshift(`${quantityValue}%20${unitValue}%20${ingrediantValue}`);
-	items -= 1;
+	items2 -= 1;
 	console.log(recipe);
 	}
 			
@@ -270,6 +271,10 @@ const displayNutrition = (nutritionData) => {
 	const protein = document.createElement('li');
 	protein.setAttribute("class", "list-group-item");
 	protein.textContent = `Protein: ${Math.floor(nutritionData.Protein/servings)} g`;
+	const resetButton = document.createElement('button');
+	resetButton.textContent = "Get Data For Another Recipe";
+	resetButton.setAttribute("type", "button");
+	resetButton.setAttribute("class", "list-group-item btn-primary");
 	nutrition.append(protein);
 	container.append(heading2);
 	container.append(heading);
@@ -277,8 +282,19 @@ const displayNutrition = (nutritionData) => {
 	container.append(nutrition);
 	vitCard.append(vitamins);
 	container.append(vitCard);
+	container.append(resetButton);
 	buildForm.hidden = true;
 	containerDiv.append(container);
+	resetButton.addEventListener("click", evt => resetForm());
+}
+
+const resetForm = () => {
+	containerDiv.removeChild(document.querySelector('#nutritionData'));
+	buildForm.hidden = false;
+	console.log(items);
+	while (items > 1) {
+		removeIngrediant();
+	}
 }
 
 let appID = 'cf02100e';
