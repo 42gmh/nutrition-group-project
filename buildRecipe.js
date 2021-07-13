@@ -303,8 +303,8 @@ const resetForm = () => {
 	}
 }
 
-let appID = 'cf02100e';
-let appKey = 'c234aa314eb83217692abd4f6eb1061a';
+let appID = 'PROVIDE_ME';
+let appKey = 'PROVIDE_ME';
 
 
 
