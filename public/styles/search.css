@@ -1,0 +1,46 @@
+@import url("base.css");
+
+/* #my-div-output-container a:link{
+    color: #c84b31;
+}
+
+#my-div-output-container > a:visited{
+    color: #c84b31;
+} */
+
+.card {
+    align-items: center;
+    background-color: #ecdbba;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 799px)
+{
+    #my-div-results{
+        grid-template-columns: repeat(1, 18rem);
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 999px)
+{
+    #my-div-results{
+        grid-template-columns: repeat(2, 18rem);
+    }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1249px)
+{
+    #my-div-results{
+        grid-template-columns: repeat(3, 18rem);
+    }
+}
+
+@media only screen and (min-width: 1250px)
+{
+    #my-div-results{
+        grid-template-columns: repeat(4, 18rem);
+    }
+}
