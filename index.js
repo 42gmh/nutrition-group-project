@@ -12,7 +12,12 @@ app.set('views', 'templates');
 app.set('view engine', 'html');
 
 const server = http.createServer(app);
-
+const helmet = require('helmet');
+app.use(
+	helmet({
+		contentSecurityPolicy: false,
+	})
+)
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
