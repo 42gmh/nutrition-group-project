@@ -26,7 +26,7 @@
   <p align="center">
   Frontend Project for DigitalCrafts Full Stack Flex Week 10 
 
-  A static site to feature the front end skills we've aquired with DigitalCrafts. We use html forms to create fetch requests against some nutrition APIs offered by Edamame. Users can search for recipies and can build their own recipe by providing a list of ingrediants and the app will return nutrition information.
+  A static site to feature the front end skills we've aquired with DigitalCrafts. We use html forms to create fetch requests against some nutrition APIs (Nutrition Analysis and Recipe Search from https://developer.edamam.com/) offered by Edamame. Users can search for recipies and can build their own recipe by providing a list of ingrediants and the app will return nutrition information.
     <br />
   </p>
 </p>
@@ -83,7 +83,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone https://github.com/joshrw313/DCProject0821.git
    ```
-2. Obtain and Add Edamame API credentials to buildRecipe.js (line 306 and 307) and search.js (line 8 and 9) 
+2. Obtain and Add Edamame API credentials (https://developer.edamam.com/) to buildRecipe.js (line 306 and 307) and search.js (line 8 and 9) 
 3. Deploy on the webserver of your choice 
 
 <!-- CONTACT -->
